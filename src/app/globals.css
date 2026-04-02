@@ -1,0 +1,73 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Make sure there is nothing here setting a background color to white! */
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed00;
+  }
+}
+
+body {
+  /* background: var(--background);  <-- Remove or comment this out! */
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+}
+
+@layer utilities {
+  @keyframes float {
+    0% { transform: translate3d(0px, 0px, 0) scale(1); }
+    33% { transform: translate3d(30px, 50px, 0) scale(1.1); }
+    66% { transform: translate3d(-20px, 20px, 0) scale(0.9); }
+    100% { transform: translate3d(0px, 0px, 0) scale(1); }
+  }
+
+  @keyframes float-reverse {
+    0% { transform: translate3d(0px, 0px, 0) scale(1); }
+    33% { transform: translate3d(-50px, -30px, 0) scale(1.05); }
+    66% { transform: translate3d(20px, -40px, 0) scale(0.95); }
+    100% { transform: translate3d(0px, 0px, 0) scale(1); }
+  }
+
+  .animate-float {
+    animation: float 18s infinite ease-in-out;
+    will-change: transform;
+  }
+
+  .animate-float-delayed {
+    animation: float-reverse 22s infinite ease-in-out 2s;
+    will-change: transform;
+  }
+
+  .animate-float-slow {
+    animation: float 30s infinite ease-in-out 1s;
+    will-change: transform;
+  }
+}
