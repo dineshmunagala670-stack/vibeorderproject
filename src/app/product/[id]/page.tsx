@@ -15,6 +15,7 @@ export default function ProductPage() {
   const [selectedSize, setSelectedSize] = useState('M');
   const { addToCart } = useCart() as any;
   const supabase = createClient();
+  export const dynamic = 'force-dynamic';
 
   useEffect(() => {
     async function getProduct() {
